@@ -1,0 +1,149 @@
+@import "sass/main";
+
+.root {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+}
+
+.main {
+    margin-top: 2em;
+}
+
+.title {
+    margin-bottom: 0.2em !important;
+}
+
+.sub-title {
+    margin: 1em 0 -10px;
+}
+
+hr {
+    background-color: #060606;
+    margin: 0 0 1em;
+}
+
+.add.button {
+    position: absolute;
+    right: 3px;
+    background-color: transparent;
+    color: black;
+    font-weight: 600;
+    transition: all 0.2s linear;
+
+    &:hover {
+        background-color: transparent;
+        color: black;
+        transform: scale(1.5);
+    }
+}
+
+.add.input {
+    padding-right: 30px;
+}
+
+.main, .add.field, .task-list, .task-list .task, .progress-bar2-wid {
+    max-width: 350px;
+    width: 350px;
+}
+
+.task-list {
+    height: 40px;
+    border-radius: 30px;
+    padding: 1em;
+    background-color: #c7c7c770;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 0.5em;
+
+    &:first-child {
+        margin-top: 1.5em;
+    }
+
+    .task {
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        padding: 0 0.5em;
+    }
+
+    &:hover .delete {
+        opacity: 1;
+    }
+
+    .delete {
+        transition: opacity 3s cubic-bezier(0.04, 0.82, 0.37, 0.99);
+        opacity: 0;
+    }
+
+    &.done {
+        background-color: #52d39770;
+        text-decoration: line-through;
+
+        .check {
+            .st1 {
+                stroke-dashoffset: 72;
+                transition: all 0.2s linear;
+                transition-delay: 0.15s;
+            }
+
+            .st0 {
+                stroke-dashoffset: 31;
+            }
+        }
+    }
+}
+
+@keyframes progress3 {
+    0% {
+        transform: translateX(-100%);
+    }
+
+    100% {
+        transform: translateX(0%);
+    }
+}
+
+.progress-bar3 {
+    animation-name: progress3;
+    animation-duration: 2s;
+    animation-iteration-count: 1;
+    animation-delay: 1s;
+    animation-fill-mode: forwards;
+    transform: translateX(-100%);
+}
+
+.check {
+    width: 22px;
+    height: 22px;
+    enable-background: new 0 0 10 10;
+    display: flex;
+
+    .st0 {
+        fill: none;
+        stroke: #000000;
+        stroke-width: 0.2;
+        stroke-miterlimit: 10;
+        stroke-dasharray: 31;
+        stroke-dashoffset: 0;
+        transition: all 0.3s linear;
+    }
+
+    .st1 {
+        fill: none;
+        stroke: #000000;
+        stroke-width: 0.2;
+        stroke-miterlimit: 10;
+        stroke-linecap: round;
+        stroke-dasharray: 80;
+        stroke-dashoffset: 80;
+        transition: all 0.3s linear;
+    }
+}
+
+input[type="checkbox"]{
+  display: none;
+}
