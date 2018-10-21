@@ -1,13 +1,13 @@
 {
-  "main.css": "/static/css/main.ae55384e.chunk.css",
-  "main.js": "/static/js/main.1a025555.chunk.js",
-  "main.js.map": "/static/js/main.1a025555.chunk.js.map",
-  "static/js/1.304ca6d0.chunk.js": "/static/js/1.304ca6d0.chunk.js",
-  "static/js/1.304ca6d0.chunk.js.map": "/static/js/1.304ca6d0.chunk.js.map",
-  "runtime~main.js": "/static/js/runtime~main.229c360f.js",
-  "runtime~main.js.map": "/static/js/runtime~main.229c360f.js.map",
-  "static/css/main.ae55384e.chunk.css.map": "/static/css/main.ae55384e.chunk.css.map",
-  "index.html": "/index.html",
-  "precache-manifest.39dba3fcdb41b1b5886bec08792f982a.js": "/precache-manifest.39dba3fcdb41b1b5886bec08792f982a.js",
-  "service-worker.js": "/service-worker.js"
+  "main.css": "/pujasinghal/TodoApp/static/css/main.fe94bf9b.chunk.css",
+  "main.js": "/pujasinghal/TodoApp/static/js/main.f7cead09.chunk.js",
+  "main.js.map": "/pujasinghal/TodoApp/static/js/main.f7cead09.chunk.js.map",
+  "static/js/1.9ce7714c.chunk.js": "/pujasinghal/TodoApp/static/js/1.9ce7714c.chunk.js",
+  "static/js/1.9ce7714c.chunk.js.map": "/pujasinghal/TodoApp/static/js/1.9ce7714c.chunk.js.map",
+  "runtime~main.js": "/pujasinghal/TodoApp/static/js/runtime~main.4247eac1.js",
+  "runtime~main.js.map": "/pujasinghal/TodoApp/static/js/runtime~main.4247eac1.js.map",
+  "static/css/main.fe94bf9b.chunk.css.map": "/pujasinghal/TodoApp/static/css/main.fe94bf9b.chunk.css.map",
+  "index.html": "/pujasinghal/TodoApp/index.html",
+  "precache-manifest.63a4dcad1df6b389fcd82fc8fbc4b534.js": "/pujasinghal/TodoApp/precache-manifest.63a4dcad1df6b389fcd82fc8fbc4b534.js",
+  "service-worker.js": "/pujasinghal/TodoApp/service-worker.js"
 }
