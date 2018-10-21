@@ -4,12 +4,14 @@
   "private": true,
   "dependencies": {
     "bulma": "^0.7.2",
+    "firebase": "^5.5.5",
     "immutability-helper": "^2.8.1",
     "node-sass": "^4.9.3",
     "react": "^16.5.2",
     "react-addons-update": "^15.6.2",
     "react-dom": "^16.5.2",
-    "react-scripts": "2.0.4"
+    "react-scripts": "2.0.4",
+    "uuid": "^3.3.2"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -25,5 +27,20 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "gh-pages": "^2.0.1"
+  },
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://pujasinghal:smile@57@github.com/pujasinghal/TodoApp.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pujasinghal/TodoApp/issues"
+  },
+  "homepage": "https://github.com/pujasinghal/TodoApp#readme"
 }

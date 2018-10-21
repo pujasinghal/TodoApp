@@ -2,39 +2,61 @@ import React, { Component } from 'react';
 import update from 'immutability-helper';
 
 import '../globalstyle.scss';
-//import ListItem from '../components/ListItem';
+import { db } from '../firebase/firebase';
+import uuidv4 from 'uuid/v4';
 
 let INITIAL = {
     tasklist: []
 }
 
 class App extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = { ...INITIAL };
+        this.addToList = this.addToList.bind(this);
     }
-    state = {
-        tasklist: []
+
+    componentWillMount = () => {
+        var data;
+        db.ref('tasks/').on("value", (snapshot) => {
+            var arr = [];
+            data = snapshot.exists() ? snapshot.val() : {};
+            for (var k in data) {
+                arr.push(data[k]);
+            }
+            this.setState({
+                tasklist: arr
+            })
+        });
     }
+
     addToList = (newTask) => {
-        this.setState(prevState => ({
-            tasklist: prevState.tasklist.concat(
-                {
-                    title: newTask,
-                    completed: false
-                })
-        }));
+        let uid = uuidv4();
+        var data = {};
+        //add
+        db.ref('tasks/' + uid).set({
+            id: uid,
+            title: newTask,
+            completed: false
+        });
     };
-    moveToCompletedList = (index) => {
+    udpateTask = (index) => {
         let a = this.state.tasklist[index].completed;
-        let todo = update(this.state.tasklist, { [index]: { completed: { $set: !a } } })
-        this.setState({ tasklist: todo });
+       // let todo = update(this.state.tasklist, { [index]: { completed: { $set: !a } } })
+       // this.setState({ tasklist: todo });
+        db.ref('tasks/' +this.state.tasklist[index].id).update({
+            completed: !a
+        });
+
     };
     deleteTasks = (index) => {
-        this.state.tasklist.splice(index, 1);
-        this.setState({
-            tasklist: this.state.tasklist
-        })
+        // this.state.tasklist.splice(index, 1);
+        // this.setState({
+        //     tasklist: this.state.tasklist
+        // })
+        console.log(this.state.tasklist[index]);
+        db.ref('tasks/' +this.state.tasklist[index].id).set(null);  
+
     }
     render() {
         let len = (this.state.tasklist.filter(x => !x.completed)).length;
@@ -50,7 +72,7 @@ class App extends Component {
                     <rect x="0.25" fill="#E5E5E5" width="500" height="8"></rect>
                     <rect className="progress-bar3" fill="#8EC241" width={completedPer + "%"} height="8"></rect>
                 </svg>
-                <ListItems tasklist={this.state.tasklist} onChange={this.moveToCompletedList} delete={this.deleteTasks} />
+                <ListItems tasklist={this.state.tasklist} onChange={this.udpateTask} delete={this.deleteTasks} />
             </div>
         );
     }
@@ -79,9 +101,9 @@ class Form extends Component {
 class ListItems extends Component {
     constructor(props) {
         super(props);
-        this.handleClick = this.handleClick.bind(this);
+        this.updateTask = this.updateTask.bind(this);
     }
-    handleClick = (target) => {
+    updateTask = (target) => {
         this.props.onChange(target.target.value);
     };
     deleteTasks = (prop, e) => {
@@ -90,7 +112,7 @@ class ListItems extends Component {
     render() {
         return (
             <div>
-                {this.props.tasklist.map((key, value) => <ListItem {...key} key={value} task={key.title} change={this.handleClick} index={value} delete={this.deleteTasks} />)}
+                {this.props.tasklist.map((key, value) => <ListItem {...key} key={value} task={key.title} change={this.updateTask} index={value} delete={this.deleteTasks} />)}
             </div>
         )
     }
@@ -99,8 +121,8 @@ class ListItems extends Component {
 const ListItem = (props) => {
     return (
         <div className={'task-list ' + (props.completed ? 'done' : '')}>
-            <input type="checkbox" id={'ck'+props.index} name="list" value={props.index} onChange={props.change} />
-            <label for={'ck'+props.index}>
+            <input type="checkbox" id={'ck' + props.index} name="list" value={props.index} onChange={props.change} />
+            <label htmlFor={'ck' + props.index}>
                 <svg className="check" x="0px" y="0px" viewBox="0 0 10 10">
                     <path className="st0" d="M5,9.8L5,9.8C2.3,9.8,0.2,7.7,0.2,5v0c0-2.7,2.2-4.8,4.8-4.8h0c2.7,0,4.8,2.2,4.8,4.8v0C9.8,7.7,7.7,9.8,5,9.8z" />
                     <polyline className="st1" points="7.8,3.1 3.9,6.9 2.2,5.2" />
